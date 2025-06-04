@@ -1,48 +1,91 @@
 body {
   font-family: Arial, sans-serif;
-  background: #f8f8f8;
   margin: 0;
-  padding: 20px;
+  padding: 0 1rem;
+  background: #f0f4f8;
+  color: #333;
 }
 
-.container {
-  max-width: 600px;
-  background: white;
-  padding: 30px;
-  margin: auto;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+header {
+  background: #005f73;
+  color: white;
+  padding: 1rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-h1 {
-  text-align: center;
-  color: #444;
+header h1 {
+  margin: 0;
 }
 
-label {
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1rem;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
   font-weight: bold;
 }
 
-textarea, input {
+nav a:hover {
+  text-decoration: underline;
+}
+
+main {
+  max-width: 700px;
+  margin: 2rem auto;
+}
+
+.card {
+  background: white;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px #ccc;
+}
+
+form label {
+  display: block;
+  margin-bottom: 0.8rem;
+}
+
+input[type="text"],
+input[type="number"],
+textarea,
+select {
   width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  border-radius: 5px;
+  padding: 0.5rem;
+  margin-top: 0.3rem;
   border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 1rem;
+  box-sizing: border-box;
 }
 
 button {
-  background: #ffbb00;
+  background: #0a9396;
   color: white;
   border: none;
-  padding: 12px 20px;
-  border-radius: 8px;
+  padding: 0.7rem 1.2rem;
+  border-radius: 4px;
   cursor: pointer;
-  font-size: 16px;
-  display: block;
-  margin: auto;
+  font-size: 1rem;
 }
 
 button:hover {
-  background: #ffaa00;
+  background: #007f7f;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  color: #555;
 }

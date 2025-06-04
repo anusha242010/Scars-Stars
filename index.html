@@ -2,27 +2,126 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Scars & Stars</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
-    <h1>✨ Scars & Stars ✨</h1>
-    <p>Share your journey – from failure to growth.</p>
-    
-    <form>
-      <label>Username (or leave anonymous):</label>
-      <input type="text" placeholder="e.g., StarSeeker99" /><br><br>
+  <header>
+    <h1>Scars & Stars</h1>
+    <nav>
+      <ul>
+        <li><a href="#login">Login</a></li>
+        <li><a href="#submit">Submit Scar & Star</a></li>
+        <li><a href="#explore">Explore Stories</a></li>
+      </ul>
+    </nav>
+  </header>
 
-      <label>Your Scar (Failure):</label><br>
-      <textarea rows="4" placeholder="What went wrong..."></textarea><br><br>
+  <main>
+    <section id="login" class="card">
+      <h2>Login / Identity Setup</h2>
+      <form id="loginForm">
+        <label>
+          Username: <input type="text" id="username" placeholder="Real or made-up" required />
+        </label><br />
+        <label>
+          <input type="checkbox" id="anonymous" /> Stay Anonymous
+        </label><br />
+        <button type="submit">Login</button>
+      </form>
+      <div id="loginMsg"></div>
+    </section>
 
-      <label>Your Star (What you learned):</label><br>
-      <textarea rows="4" placeholder="What came out of it..."></textarea><br><br>
+    <section id="submit" class="card">
+      <h2>Submit a Scar & Star</h2>
+      <form id="submitForm">
+        <label>
+          Scar: <br />
+          <textarea id="scar" placeholder="What went wrong?" required></textarea>
+        </label><br />
+        <label>
+          Star: <br />
+          <textarea id="star" placeholder="What came out of it?" required></textarea>
+        </label><br />
+        <!-- Optional fields -->
+        <label>
+          Age: <input type="number" id="age" min="1" max="120" />
+        </label>
+        <label>
+          Country: <input type="text" id="country" placeholder="Country" />
+        </label><br />
+        <label>
+          Tags (comma-separated): <input type="text" id="tags" placeholder="Education, Career, etc." />
+        </label><br />
+        <label>
+          Visibility:
+          <select id="visibility">
+            <option value="public">Public (anonymous by default)</option>
+            <option value="private">Private (My Journal)</option>
+            <option value="shareable">Shareable Link Only</option>
+          </select>
+        </label><br />
+        <button type="submit">Submit</button>
+      </form>
+      <div id="submitMsg"></div>
+    </section>
 
-      <button type="submit">Submit Story</button>
-    </form>
-  </div>
+    <section id="explore" class="card">
+      <h2>Explore Others’ Stories</h2>
+      <p>Stories will appear here after submission (Coming Soon)</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Scars & Stars. Healing through sharing.</p>
+  </footer>
+
+  <script>
+    // Basic example: store username on login, show message
+    const loginForm = document.getElementById('loginForm');
+    const loginMsg = document.getElementById('loginMsg');
+    let currentUser = null;
+
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const username = document.getElementById('username').value.trim();
+      const anonymous = document.getElementById('anonymous').checked;
+
+      if (anonymous) {
+        currentUser = 'Anonymous';
+      } else if (username.length > 0) {
+        currentUser = username;
+      } else {
+        loginMsg.textContent = 'Please enter a username or choose anonymous.';
+        return;
+      }
+      loginMsg.textContent = `Logged in as: ${currentUser}`;
+      loginForm.reset();
+    });
+
+    // Handle submit scar & star form (just show message, no real saving)
+    const submitForm = document.getElementById('submitForm');
+    const submitMsg = document.getElementById('submitMsg');
+
+    submitForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!currentUser) {
+        submitMsg.textContent = 'Please login first to submit your story.';
+        return;
+      }
+      const scar = document.getElementById('scar').value.trim();
+      const star = document.getElementById('star').value.trim();
+
+      if (!scar || !star) {
+        submitMsg.textContent = 'Please fill in both scar and star.';
+        return;
+      }
+
+      // This is where you'd normally send data to backend.
+      submitMsg.textContent = `Thanks, ${currentUser}! Your Scar & Star have been submitted. (Not really saved yet)`;
+      submitForm.reset();
+    });
+  </script>
 </body>
 </html>
