@@ -1,85 +1,121 @@
-<!-- 📄 index.html -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Scars & Stars Login</title>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scars & Stars | Login</title>
   <style>
-    body { font-family: Arial; padding: 20px; }
-    input, button { margin: 5px 0; padding: 10px; width: 100%; }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('2ca5d974-f6e7-4087-88d2-7bb6e5b41abb.png') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+    header h1 {
+      font-size: 1.5rem;
+      margin: 0;
+    }
+    nav a {
+      color: #00eaff;
+      margin-left: 1rem;
+      text-decoration: none;
+    }
+    .login-container {
+      background-color: rgba(0, 0, 0, 0.7);
+      max-width: 400px;
+      margin: 5rem auto;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 234, 255, 0.4);
+    }
+    .login-container h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 0.5rem;
+      border: none;
+      border-radius: 8px;
+    }
+    .form-actions {
+      text-align: center;
+    }
+    .form-actions button {
+      padding: 0.5rem 1rem;
+      background-color: #00eaff;
+      border: none;
+      border-radius: 8px;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: rgba(0, 0, 0, 0.5);
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+    }
   </style>
 </head>
 <body>
-  <h2>Scars & Stars</h2>
-  <div id="signup">
-    <h3>Sign Up</h3>
-    <input type="text" id="signupUsername" placeholder="Username">
-    <input type="password" id="signupPassword" placeholder="Password">
-    <button onclick="signUp()">Sign Up</button>
-  </div>
-  <div id="login">
-    <h3>Log In</h3>
-    <input type="text" id="loginUsername" placeholder="Username">
-    <input type="password" id="loginPassword" placeholder="Password">
-    <button onclick="logIn()">Log In</button>
+  <header>
+    <h1>Scars & Stars</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Explore</a>
+      <a href="#">Journal</a>
+      <a href="#">Healing Hub</a>
+    </nav>
+  </header>
+
+  <div class="login-container">
+    <h2>Login</h2>
+    <form onsubmit="loginUser(event)">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" required>
+      </div>
+      <div class="form-actions">
+        <button type="submit">Log In</button>
+        <p style="margin-top: 1rem;">New here? <a href="#" style="color: #00eaff; text-decoration: underline;">Sign up</a></p>
+      </div>
+    </form>
   </div>
 
-  <div id="dashboard" style="display:none">
-    <h3>Welcome, <span id="userWelcome"></span></h3>
-    <textarea id="journal" placeholder="Write your scars & stars..."></textarea><br>
-    <button onclick="saveJournal()">Save</button>
-    <div id="savedJournal"></div>
-    <button onclick="logOut()">Log Out</button>
-  </div>
+  <footer>
+    &copy; 2025 Scars & Stars | Built with healing in mind
+  </footer>
 
   <script>
-    const firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-      databaseURL: "https://YOUR_PROJECT_ID.firebaseio.com",
-      projectId: "YOUR_PROJECT_ID",
-      storageBucket: "YOUR_PROJECT_ID.appspot.com",
-      messagingSenderId: "SENDER_ID",
-      appId: "APP_ID"
-    };
+    function loginUser(event) {
+      event.preventDefault();
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
 
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.database();
-
-    function signUp() {
-      const username = document.getElementById("signupUsername").value;
-      const password = document.getElementById("signupPassword").value;
-      db.ref("users/" + username).set({ password: password, journal: "" });
-      alert("Account created!");
-    }
-
-    function logIn() {
-      const username = document.getElementById("loginUsername").value;
-      const password = document.getElementById("loginPassword").value;
-      db.ref("users/" + username).once("value", snapshot => {
-        if (snapshot.exists() && snapshot.val().password === password) {
-          document.getElementById("login").style.display = "none";
-          document.getElementById("signup").style.display = "none";
-          document.getElementById("dashboard").style.display = "block";
-          document.getElementById("userWelcome").innerText = username;
-          document.getElementById("journal").value = snapshot.val().journal || "";
-        } else {
-          alert("Invalid username or password");
-        }
-      });
-    }
-
-    function saveJournal() {
-      const username = document.getElementById("userWelcome").innerText;
-      const content = document.getElementById("journal").value;
-      db.ref("users/" + username).update({ journal: content });
-      alert("Saved!");
-    }
-
-    function logOut() {
-      location.reload();
+      alert("Logged in as " + username + " (Password is securely processed in final version)");
+      // TODO: Add actual Firebase or localStorage authentication logic
     }
   </script>
 </body>
