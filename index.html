@@ -1,37 +1,86 @@
-<!-- index.html -->
-<h2>Welcome to Scars & Stars</h2>
-<div id="login">
-  <label for="username">Enter a username:</label>
-  <input type="text" id="username" placeholder="e.g. StarSeeker123" />
-  <br>
-  <label><input type="checkbox" id="anon" /> Stay anonymous</label>
-  <br><br>
-  <button onclick="saveUser()">Enter</button>
-</div>
+<!-- 📄 index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Scars & Stars Login</title>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    input, button { margin: 5px 0; padding: 10px; width: 100%; }
+  </style>
+</head>
+<body>
+  <h2>Scars & Stars</h2>
+  <div id="signup">
+    <h3>Sign Up</h3>
+    <input type="text" id="signupUsername" placeholder="Username">
+    <input type="password" id="signupPassword" placeholder="Password">
+    <button onclick="signUp()">Sign Up</button>
+  </div>
+  <div id="login">
+    <h3>Log In</h3>
+    <input type="text" id="loginUsername" placeholder="Username">
+    <input type="password" id="loginPassword" placeholder="Password">
+    <button onclick="logIn()">Log In</button>
+  </div>
 
-<div id="welcome" style="display: none;">
-  <p>Hello, <span id="userDisplay"></span> 🌟</p>
-</div>
+  <div id="dashboard" style="display:none">
+    <h3>Welcome, <span id="userWelcome"></span></h3>
+    <textarea id="journal" placeholder="Write your scars & stars..."></textarea><br>
+    <button onclick="saveJournal()">Save</button>
+    <div id="savedJournal"></div>
+    <button onclick="logOut()">Log Out</button>
+  </div>
 
-<script>
-  function saveUser() {
-    const name = document.getElementById("username").value.trim();
-    const isAnon = document.getElementById("anon").checked;
-    const finalName = isAnon || name === "" ? "Anonymous Star" : name;
+  <script>
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+      databaseURL: "https://YOUR_PROJECT_ID.firebaseio.com",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_PROJECT_ID.appspot.com",
+      messagingSenderId: "SENDER_ID",
+      appId: "APP_ID"
+    };
 
-    localStorage.setItem("scarUser", finalName);
-    document.getElementById("login").style.display = "none";
-    document.getElementById("welcome").style.display = "block";
-    document.getElementById("userDisplay").textContent = finalName;
-  }
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
 
-  // Auto-load if user already exists
-  window.onload = function () {
-    const storedName = localStorage.getItem("scarUser");
-    if (storedName) {
-      document.getElementById("login").style.display = "none";
-      document.getElementById("welcome").style.display = "block";
-      document.getElementById("userDisplay").textContent = storedName;
+    function signUp() {
+      const username = document.getElementById("signupUsername").value;
+      const password = document.getElementById("signupPassword").value;
+      db.ref("users/" + username).set({ password: password, journal: "" });
+      alert("Account created!");
     }
-  };
-</script>
+
+    function logIn() {
+      const username = document.getElementById("loginUsername").value;
+      const password = document.getElementById("loginPassword").value;
+      db.ref("users/" + username).once("value", snapshot => {
+        if (snapshot.exists() && snapshot.val().password === password) {
+          document.getElementById("login").style.display = "none";
+          document.getElementById("signup").style.display = "none";
+          document.getElementById("dashboard").style.display = "block";
+          document.getElementById("userWelcome").innerText = username;
+          document.getElementById("journal").value = snapshot.val().journal || "";
+        } else {
+          alert("Invalid username or password");
+        }
+      });
+    }
+
+    function saveJournal() {
+      const username = document.getElementById("userWelcome").innerText;
+      const content = document.getElementById("journal").value;
+      db.ref("users/" + username).update({ journal: content });
+      alert("Saved!");
+    }
+
+    function logOut() {
+      location.reload();
+    }
+  </script>
+</body>
+</html>
