@@ -55,35 +55,42 @@ nav a {
   cursor: pointer;
 }
 
-.features {
+.tabs {
   display: flex;
-  justify-content: space-around;
-  padding: 3rem 2rem;
-  background-color: #1a1a1a;
+  justify-content: center;
+  margin-top: 2rem;
 }
 
-.feature-card {
+.tab-button {
+  padding: 1rem 2rem;
   background-color: rgba(0, 0, 0, 0.7);
-  padding: 2rem;
-  border-radius: 12px;
-  width: 30%;
-  text-align: center;
+  border: none;
+  border-radius: 8px 8px 0 0;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 0 0.5rem;
+  transition: background-color 0.3s;
 }
 
-.feature-card h3 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
+.tab-button.active {
+  background-color: #0066cc;
 }
 
-.journal, .healing-hub, .explore {
-  text-align: center;
+.tab-button:hover {
+  background-color: #004d99;
+}
+
+.tab-content {
+  display: none;
   padding: 3rem 2rem;
   background-color: #1a1a1a;
+  border-radius: 0 0 8px 8px;
+  margin-top: -1px;
 }
 
-.journal h2, .healing-hub h2, .explore h2 {
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
+.tab-content.active {
+  display: block;
 }
 
 footer {

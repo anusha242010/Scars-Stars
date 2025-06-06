@@ -24,45 +24,52 @@
     <a href="#" class="cta-button">Join the Journey</a>
   </section>
 
-  <!-- Features Section -->
-  <section class="features">
-    <div class="feature-card">
-      <h3>Share Your Story</h3>
-      <p>Submit your personal experiences and reflections.</p>
-    </div>
-    <div class="feature-card">
-      <h3>Explore Others</h3>
-      <p>Read and connect with the stories of others.</p>
-    </div>
-    <div class="feature-card">
-      <h3>Healing Hub</h3>
-      <p>Access resources to support your healing journey.</p>
-    </div>
-  </section>
+  <!-- Tabs Navigation -->
+  <div class="tabs">
+    <button class="tab-button active" onclick="showTab('journal')">My Journal</button>
+    <button class="tab-button" onclick="showTab('healing')">Healing Hub</button>
+    <button class="tab-button" onclick="showTab('explore')">Explore Stories</button>
+  </div>
 
-  <!-- My Journal Section -->
-  <section class="journal">
-    <h2>My Journal</h2>
+  <!-- Tab Content -->
+  <div id="journal" class="tab-content active">
+    <h3>My Journal</h3>
     <p>Document your personal journey, track your emotions, and reflect on your growth.</p>
     <a href="#" class="cta-button">Start Journaling</a>
-  </section>
+  </div>
 
-  <!-- Healing Hub Section -->
-  <section class="healing-hub">
-    <h2>Healing Hub</h2>
+  <div id="healing" class="tab-content">
+    <h3>Healing Hub</h3>
     <p>Explore mindfulness guides, creative expression tools, and supportive resources.</p>
     <a href="#" class="cta-button">Visit Healing Hub</a>
-  </section>
+  </div>
 
-  <!-- Explore Others' Stories Section -->
-  <section class="explore">
-    <h2>Explore Others' Stories</h2>
+  <div id="explore" class="tab-content">
+    <h3>Explore Others' Stories</h3>
     <p>Read and connect with the experiences of others in our community.</p>
     <a href="#" class="cta-button">Start Exploring</a>
-  </section>
+  </div>
 
   <footer>
     <p>&copy; 2025 Scars & Stars | Built with healing in mind</p>
   </footer>
+
+  <script>
+    function showTab(tabName) {
+      const tabs = document.querySelectorAll('.tab-content');
+      const buttons = document.querySelectorAll('.tab-button');
+
+      tabs.forEach(tab => {
+        tab.classList.remove('active');
+      });
+
+      buttons.forEach(button => {
+        button.classList.remove('active');
+      });
+
+      document.getElementById(tabName).classList.add('active');
+      event.currentTarget.classList.add('active');
+    }
+  </script>
 </body>
 </html>
