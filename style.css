@@ -1,7 +1,11 @@
 body {
-  background-image: url('imagesbackground.jpg'); /* relative path to your image */
+  background-image: url('mybg.png'); 
   background-size: cover;
-  background-repeat: no-repeat;
   background-position: center;
+  background-repeat: no-repeat;
   background-attachment: fixed;
+  margin: 0;
+  height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+  color: white;
 }
