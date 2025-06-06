@@ -4,221 +4,116 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Scars & Stars</title>
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=JetBrains+Mono&family=Pacifico&display=swap" rel="stylesheet" />
-  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=JetBrains+Mono&family=Great+Vibes&display=swap" rel="stylesheet" />
   <style>
-    /* Reset and basics */
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
-      background: url('mybg.png.jpg') no-repeat center center fixed;
+      background: url('your-background.png') no-repeat center center fixed;
       background-size: cover;
       color: #111;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
     }
-    a {
-      color: #00c7ff;
-      text-decoration: none;
-      font-weight: 600;
-      transition: color 0.3s ease;
-    }
-    a:hover {
-      color: #008fca;
-      text-decoration: underline;
-    }
-
-    /* Container for consistent max width and center */
-    .container {
-      width: 90%;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    /* Header */
     header {
-      background-color: rgba(255 255 255 / 0.9);
+      background-color: rgba(255,255,255,0.9);
       padding: 1rem 0;
-      box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       position: sticky;
       top: 0;
       z-index: 100;
     }
-    header .container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
     header h1 {
-      font-family: 'Pacifico', cursive;
-      font-weight: 400;
+      font-family: 'Great Vibes', cursive;
       font-size: 2.5rem;
-      color: #3a86ff;
+      color: #3a8dde;
       margin: 0;
-      letter-spacing: 1px;
-      text-shadow: 0 0 5px rgba(58, 134, 255, 0.3), 0 0 10px rgba(58, 134, 255, 0.2);
     }
     nav a {
       margin-left: 2rem;
-      font-size: 1rem;
-      white-space: nowrap;
+      font-weight: 600;
+      text-decoration: none;
+      color: #00a2ff;
     }
-
-    /* Hero Section */
     .hero {
-      background: rgba(255 255 255 / 0.85);
+      background: rgba(255,255,255,0.85);
       border-radius: 12px;
-      margin: 3rem auto 5rem;
+      margin: 3rem auto;
       padding: 4rem 3rem;
-      box-shadow: 0 8px 24px rgb(0 0 0 / 0.12);
-      text-align: center;
       max-width: 720px;
-      color: #0b2447;
+      text-align: center;
     }
     .hero h2 {
-      font-weight: 700;
       font-size: 2.75rem;
       margin-bottom: 1rem;
-      letter-spacing: 0.03em;
-      line-height: 1.2;
+      color: #0b2447;
     }
     .hero p {
       font-size: 1.25rem;
-      margin-bottom: 2.5rem;
-      font-weight: 500;
       color: #2e4369;
-      line-height: 1.5;
     }
     .cta-button {
+      margin-top: 2rem;
       background-color: #0078d7;
       color: white;
       border: none;
       padding: 0.9rem 2.4rem;
-      font-weight: 700;
-      font-size: 1.1rem;
       border-radius: 6px;
       cursor: pointer;
-      box-shadow: 0 6px 15px rgb(0 120 215 / 0.4);
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
     }
-    .cta-button:hover {
-      background-color: #005fa3;
-      box-shadow: 0 8px 20px rgb(0 95 163 / 0.5);
-    }
-
-    /* Tabs Container */
-    .tabs {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-bottom: 2rem;
-      max-width: 720px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .tab-button {
-      background-color: #e6f0fb;
-      border: none;
-      border-radius: 8px 8px 0 0;
-      padding: 1rem 2rem;
-      font-weight: 600;
-      color: #0078d7;
-      cursor: pointer;
-      box-shadow: 0 3px 6px rgb(0 0 0 / 0.08);
-      transition: background-color 0.3s ease, color 0.3s ease;
-      font-size: 1rem;
-      flex: 1;
-      max-width: 220px;
-      text-align: center;
-      user-select: none;
-    }
-    .tab-button:hover:not(.active) {
-      background-color: #d0e3fb;
-      color: #005fa3;
-    }
-    .tab-button.active {
-      background-color: white;
-      color: #003f72;
-      box-shadow: inset 0 -3px 0 #0078d7;
-      cursor: default;
-    }
-
-    /* Tab Content */
-    .tab-content {
-      background-color: white;
-      max-width: 720px;
-      margin: 0 auto 6rem;
-      padding: 3rem 3rem 4rem;
-      border-radius: 0 0 12px 12px;
-      box-shadow: 0 8px 24px rgb(0 0 0 / 0.1);
+    .modal {
       display: none;
-      color: #172a4a;
-      font-weight: 500;
-      line-height: 1.6;
-      font-size: 1.125rem;
-      min-height: 240px;
-      user-select: text;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
     }
-    .tab-content.active {
+    .modal-content {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+    }
+    .tab-buttons {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 1rem;
+    }
+    .tab-buttons button {
+      flex: 1;
+      padding: 0.8rem;
+      background: #e0f0ff;
+      border: none;
+      cursor: pointer;
+    }
+    .tab-buttons .active {
+      background: #0078d7;
+      color: white;
+    }
+    .tab {
+      display: none;
+    }
+    .tab.active {
       display: block;
     }
-    .tab-content h3 {
-      font-weight: 700;
-      font-size: 2rem;
-      color: #004a99;
+    input {
+      width: 100%;
       margin-bottom: 1rem;
-      letter-spacing: 0.02em;
+      padding: 0.7rem;
     }
-    .tab-content p {
-      margin-bottom: 2rem;
-      color: #3a4a70;
-    }
-    .tab-content .cta-button {
-      background-color: #004a99;
-      box-shadow: 0 6px 18px rgb(0 74 153 / 0.4);
-    }
-    .tab-content .cta-button:hover {
-      background-color: #003366;
-      box-shadow: 0 8px 24px rgb(0 51 102 / 0.5);
-    }
-
-    /* Footer */
     footer {
-      background-color: rgba(255 255 255 / 0.9);
-      color: #666;
-      font-size: 0.9rem;
-      font-weight: 500;
-      text-align: center;
-      padding: 1rem 0;
-      box-shadow: 0 -2px 10px rgb(0 0 0 / 0.05);
-      user-select: none;
       margin-top: auto;
-    }
-
-    /* Responsive */
-    @media (max-width: 600px) {
-      .hero h2 {
-        font-size: 2rem;
-      }
-      .hero p {
-        font-size: 1rem;
-      }
-      .tab-button {
-        font-size: 0.9rem;
-        padding: 0.8rem 1.2rem;
-        max-width: 140px;
-      }
-      .tab-content {
-        padding: 2rem 1.5rem 3rem;
-      }
+      background-color: rgba(255,255,255,0.9);
+      padding: 1rem;
+      text-align: center;
+      color: #555;
     }
   </style>
 </head>
@@ -235,63 +130,76 @@
     </div>
   </header>
 
-  <main class="container" role="main">
-    <section class="hero" aria-label="Introduction">
+  <main class="container">
+    <section class="hero">
       <h2>Transform Your Struggles into Strength</h2>
       <p>Share your scars, celebrate your stars, and inspire others.</p>
-      <button class="cta-button" aria-label="Join the Journey">Join the Journey</button>
-    </section>
-
-    <div class="tabs" role="tablist" aria-label="Main Sections">
-      <button class="tab-button active" role="tab" aria-selected="true" aria-controls="journal" id="tab-journal" onclick="showTab('journal', event)">My Journal</button>
-      <button class="tab-button" role="tab" aria-selected="false" aria-controls="healing" id="tab-healing" onclick="showTab('healing', event)">Healing Hub</button>
-      <button class="tab-button" role="tab" aria-selected="false" aria-controls="explore" id="tab-explore" onclick="showTab('explore', event)">Explore Stories</button>
-    </div>
-
-    <section id="journal" class="tab-content active" role="tabpanel" aria-labelledby="tab-journal">
-      <h3>My Journal</h3>
-      <p>Document your personal journey, track your emotions, and reflect on your growth.</p>
-      <button class="cta-button">Start Journaling</button>
-    </section>
-
-    <section id="healing" class="tab-content" role="tabpanel" aria-labelledby="tab-healing" tabindex="0">
-      <h3>Healing Hub</h3>
-      <p>Explore mindfulness guides, creative expression tools, and supportive resources.</p>
-      <button class="cta-button">Visit Healing Hub</button>
-    </section>
-
-    <section id="explore" class="tab-content" role="tabpanel" aria-labelledby="tab-explore" tabindex="0">
-      <h3>Explore Others' Stories</h3>
-      <p>Read and connect with the experiences of others in our community.</p>
-      <button class="cta-button">Start Exploring</button>
+      <button class="cta-button" onclick="openModal()">Join the Journey</button>
     </section>
   </main>
+
+  <!-- Login/Signup Modal -->
+  <div class="modal" id="authModal">
+    <div class="modal-content">
+      <div class="tab-buttons">
+        <button class="active" onclick="switchTab('login')">Log In</button>
+        <button onclick="switchTab('signup')">Sign Up</button>
+      </div>
+      <div class="tab active" id="login">
+        <input type="text" id="loginUsername" placeholder="Username">
+        <input type="password" id="loginPassword" placeholder="Password">
+        <button onclick="login()">Log In</button>
+      </div>
+      <div class="tab" id="signup">
+        <input type="text" id="signupUsername" placeholder="Create Username">
+        <input type="password" id="signupPassword" placeholder="Create Password">
+        <button onclick="signup()">Sign Up</button>
+      </div>
+    </div>
+  </div>
 
   <footer>
     &copy; 2025 Scars & Stars | Built with healing in mind
   </footer>
 
   <script>
-    function showTab(tabName, event) {
-      const tabs = document.querySelectorAll('.tab-content');
-      const buttons = document.querySelectorAll('.tab-button');
+    function openModal() {
+      document.getElementById('authModal').style.display = 'flex';
+    }
+    function switchTab(tab) {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.getElementById(tab).classList.add('active');
+      document.querySelectorAll('.tab-buttons button').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-buttons button')[tab === 'login' ? 0 : 1].classList.add('active');
+    }
 
-      tabs.forEach(tab => {
-        tab.classList.remove('active');
-        tab.setAttribute('aria-hidden', 'true');
-      });
-      buttons.forEach(btn => {
-        btn.classList.remove('active');
-        btn.setAttribute('aria-selected', 'false');
-      });
+    function signup() {
+      const username = document.getElementById('signupUsername').value;
+      const password = document.getElementById('signupPassword').value;
+      if (!username || !password) return alert('Please fill both fields');
+      if (localStorage.getItem(username)) return alert('Username already exists');
 
-      const activeTab = document.getElementById(tabName);
-      activeTab.classList.add('active');
-      activeTab.setAttribute('aria-hidden', 'false');
+      const userData = {
+        password,
+        journal: '',
+        healing: '',
+        explore: ''
+      };
+      localStorage.setItem(username, JSON.stringify(userData));
+      alert('Account created successfully! Please log in.');
+      switchTab('login');
+    }
 
-      event.currentTarget.classList.add('active');
-      event.currentTarget.setAttribute('aria-selected', 'true');
-      activeTab.focus();
+    function login() {
+      const username = document.getElementById('loginUsername').value;
+      const password = document.getElementById('loginPassword').value;
+      const userData = JSON.parse(localStorage.getItem(username));
+      if (!userData || userData.password !== password) {
+        return alert('Invalid username or password');
+      }
+      alert('Logged in successfully! Your data is secure.');
+      document.getElementById('authModal').style.display = 'none';
+      // You can now use userData.journal, healing, explore
     }
   </script>
 </body>
