@@ -75,6 +75,17 @@ nav a {
   margin-bottom: 1rem;
 }
 
+.journal, .healing-hub, .explore {
+  text-align: center;
+  padding: 3rem 2rem;
+  background-color: #1a1a1a;
+}
+
+.journal h2, .healing-hub h2, .explore h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
 footer {
   text-align: center;
   padding: 1rem;
@@ -82,17 +93,4 @@ footer {
   position: fixed;
   width: 100%;
   bottom: 0;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .features {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .feature-card {
-    width: 80%;
-    margin-bottom: 2rem;
-  }
 }
