@@ -4,10 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Scars & Stars</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Pacifico&display=swap" rel="stylesheet" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=JetBrains+Mono&family=Pacifico&display=swap" rel="stylesheet" />
+  
   <style>
-    /* Reset */
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
@@ -18,243 +22,190 @@
       flex-direction: column;
       min-height: 100vh;
     }
-
-    /* Header */
+    a {
+      color: #00c7ff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+    a:hover {
+      color: #008fca;
+      text-decoration: underline;
+    }
+    .container {
+      width: 90%;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
     header {
-      background: rgba(255, 255, 255, 0.9);
-      padding: 1rem;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 1rem 0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    header .container {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      justify-content: space-between;
     }
     header h1 {
       font-family: 'Pacifico', cursive;
+      font-weight: 400;
       font-size: 2.5rem;
       color: #3a86ff;
+      margin: 0;
     }
     nav a {
       margin-left: 2rem;
-      color: #00bfff;
-      text-decoration: none;
-      font-weight: 600;
+      font-size: 1rem;
+      white-space: nowrap;
     }
-
-    /* Hero */
     .hero {
-      text-align: center;
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 12px;
       margin: 3rem auto;
-      padding: 3rem 2rem;
-      border-radius: 10px;
-      max-width: 600px;
+      padding: 4rem 3rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+      text-align: center;
+      max-width: 720px;
     }
     .hero h2 {
-      font-size: 2.2rem;
+      font-weight: 700;
+      font-size: 2.75rem;
       margin-bottom: 1rem;
     }
     .hero p {
-      font-size: 1.1rem;
-      margin-bottom: 2rem;
+      font-size: 1.25rem;
+      margin-bottom: 2.5rem;
     }
     .cta-button {
-      background: #0078d7;
+      background-color: #0078d7;
       color: white;
-      padding: 0.7rem 1.5rem;
       border: none;
-      border-radius: 5px;
-      font-size: 1rem;
+      padding: 0.9rem 2.4rem;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border-radius: 6px;
       cursor: pointer;
+      box-shadow: 0 6px 15px rgba(0, 120, 215, 0.4);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
     }
-
-    /* Info Cards */
-    .info-section {
+    .cta-button:hover {
+      background-color: #005fa3;
+      box-shadow: 0 8px 20px rgba(0, 95, 163, 0.5);
+    }
+    .tabs {
       display: flex;
       justify-content: center;
       gap: 1rem;
-      margin: 2rem auto 4rem;
-      max-width: 1000px;
-      flex-wrap: wrap;
+      margin-bottom: 2rem;
     }
-    .card {
-      background: rgba(255,255,255,0.9);
-      padding: 1.5rem;
-      border-radius: 10px;
-      text-align: center;
-      width: 300px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    .tab-button {
+      background-color: #e6f0fb;
+      border: none;
+      border-radius: 8px 8px 0 0;
+      padding: 1rem 2rem;
+      font-weight: 600;
+      color: #0078d7;
+      cursor: pointer;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
     }
-
-    /* Modal */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 9999;
-      left: 0; top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.5);
-    }
-    .modal-content {
+    .tab-button.active {
       background-color: white;
-      margin: 10% auto;
-      padding: 2rem;
-      border-radius: 10px;
-      max-width: 400px;
-      position: relative;
+      color: #003f72;
+      box-shadow: inset 0 -3px 0 #0078d7;
     }
-    .modal h3 {
-      margin-top: 0;
-      color: #0078d7;
+    .tab-content {
+      background-color: white;
+      max-width: 720px;
+      margin: 0 auto 6rem;
+      padding: 3rem;
+      border-radius: 0 0 12px 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      display: none;
     }
-    .modal input {
-      width: 100%;
-      padding: 0.7rem;
-      margin: 0.6rem 0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
+    .tab-content.active {
+      display: block;
     }
-    .modal button {
-      width: 100%;
-      background: #0078d7;
-      color: white;
-      padding: 0.8rem;
-      border: none;
-      border-radius: 5px;
-      margin-top: 1rem;
-      font-weight: bold;
-    }
-    .tab-switch {
-      display: flex;
-      justify-content: space-around;
-      margin-bottom: 1rem;
-    }
-    .tab-switch button {
-      background: none;
-      border: none;
-      color: #0078d7;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .close-btn {
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      font-size: 20px;
-      cursor: pointer;
-      color: #888;
-    }
-
     footer {
-      text-align: center;
-      background: rgba(255, 255, 255, 0.9);
-      padding: 1rem;
-      margin-top: auto;
+      background-color: rgba(255, 255, 255, 0.9);
+      color: #666;
       font-size: 0.9rem;
-      color: #444;
+      text-align: center;
+      padding: 1rem 0;
+      margin-top: auto;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Scars & Stars</h1>
-    <nav>
-      <a href="#">Home</a>
-      <a href="#">Explore</a>
-      <a href="#">Journal</a>
-      <a href="#">Healing Hub</a>
-    </nav>
+    <div class="container">
+      <h1>Scars & Stars</h1>
+      <nav>
+        <a href="#">Home</a>
+        <a href="#">Explore</a>
+        <a href="#">Journal</a>
+        <a href="#">Healing Hub</a>
+      </nav>
+    </div>
   </header>
 
-  <section class="hero">
-    <h2>Transform Your Struggles into Strength</h2>
-    <p>Share your scars, celebrate your stars, and inspire others.</p>
-    <button class="cta-button" onclick="openModal()">Join the Journey</button>
-  </section>
+  <main class="container">
+    <section class="hero">
+      <h2>Transform Your Struggles into Strength</h2>
+      <p>Share your scars, celebrate your stars, and inspire others.</p>
+      <button class="cta-button" onclick="showTab('journal')">Join the Journey</button>
+    </section>
 
-  <section class="info-section">
-    <div class="card">
+    <div class="tabs">
+      <button class="tab-button active" onclick="showTab('journal')">My Journal</button>
+      <button class="tab-button" onclick="showTab('healing')">Healing Hub</button>
+      <button class="tab-button" onclick="showTab('explore')">Explore Stories</button>
+    </div>
+
+    <section id="journal" class="tab-content active">
       <h3>My Journal</h3>
-      <p>Write, reflect, and grow by keeping track of your thoughts, emotions, and healing milestones.</p>
-    </div>
-    <div class="card">
-      <h3>Healing Hub</h3>
-      <p>Find mindfulness tools, creative prompts, and expert-curated wellness resources.</p>
-    </div>
-    <div class="card">
-      <h3>Explore Stories</h3>
-      <p>Read real stories of resilience and healing from others in our supportive community.</p>
-    </div>
-  </section>
+      <ul>
+        <li>Private space to:</li>
+        <ul>
+          <li>See all scars & stars you’ve submitted</li>
+          <li>Save random stars from others</li>
+          <li>Write journal entries (freeform)</li>
+          <li>Track emotional growth</li>
+          <li>Optional: daily/weekly reminder to reflect</li>
+        </ul>
+      </ul>
+      <p>Coming soon: fully private, personalized journaling experience for all users.</p>
+    </section>
 
-  <!-- Modal -->
-  <div id="authModal" class="modal">
-    <div class="modal-content">
-      <span class="close-btn" onclick="closeModal()">&times;</span>
-      <div class="tab-switch">
-        <button onclick="switchTab('signup')">Sign Up</button>
-        <button onclick="switchTab('login')">Log In</button>
-      </div>
-      <div id="signupTab">
-        <h3>Create Account</h3>
-        <input type="text" placeholder="Username" id="signupUser" />
-        <input type="password" placeholder="Password" id="signupPass" />
-        <button onclick="signup()">Sign Up</button>
-      </div>
-      <div id="loginTab" style="display:none">
-        <h3>Welcome Back</h3>
-        <input type="text" placeholder="Username" id="loginUser" />
-        <input type="password" placeholder="Password" id="loginPass" />
-        <button onclick="login()">Log In</button>
-      </div>
-    </div>
-  </div>
+    <section id="healing" class="tab-content">
+      <h3>Healing Hub</h3>
+      <p>Explore mindfulness tools, creative prompts, and expert-curated wellness resources.</p>
+    </section>
+
+    <section id="explore" class="tab-content">
+      <h3>Explore Others' Stories</h3>
+      <p>Read and connect with the experiences of others in our community.</p>
+    </section>
+  </main>
 
   <footer>
     &copy; 2025 Scars & Stars | Built with healing in mind
   </footer>
 
   <script>
-    const modal = document.getElementById('authModal');
-    function openModal() { modal.style.display = 'block'; }
-    function closeModal() { modal.style.display = 'none'; }
+    function showTab(tabId) {
+      const tabs = document.querySelectorAll('.tab-content');
+      const buttons = document.querySelectorAll('.tab-button');
+      tabs.forEach(tab => tab.classList.remove('active'));
+      buttons.forEach(btn => btn.classList.remove('active'));
 
-    function switchTab(tab) {
-      document.getElementById('signupTab').style.display = tab === 'signup' ? 'block' : 'none';
-      document.getElementById('loginTab').style.display = tab === 'login' ? 'block' : 'none';
+      document.getElementById(tabId).classList.add('active');
+      const btnIndex = tabId === 'journal' ? 0 : tabId === 'healing' ? 1 : 2;
+      buttons[btnIndex].classList.add('active');
     }
-
-    // Save user (in browser only — for real app use backend)
-    function signup() {
-      const user = document.getElementById('signupUser').value;
-      const pass = document.getElementById('signupPass').value;
-      if (user && pass) {
-        localStorage.setItem(user, pass);
-        alert("Account created!");
-        closeModal();
-      } else {
-        alert("Please fill all fields.");
-      }
-    }
-
-    function login() {
-      const user = document.getElementById('loginUser').value;
-      const pass = document.getElementById('loginPass').value;
-      const stored = localStorage.getItem(user);
-      if (stored && stored === pass) {
-        alert("Welcome back!");
-        closeModal();
-      } else {
-        alert("Invalid username or password.");
-      }
-    }
-
-    // Optional: Close modal when clicking outside
-    window.onclick = function(e) {
-      if (e.target === modal) {
-        closeModal();
-      }
-    };
   </script>
 </body>
 </html>
