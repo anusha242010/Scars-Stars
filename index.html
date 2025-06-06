@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Scars & Stars | Login</title>
+  <title>Scars & Stars</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -17,53 +17,31 @@
     </nav>
   </header>
 
-  <div class="login-container">
-    <h2>Login</h2>
-    <form onsubmit="loginUser(event)">
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" id="username" required />
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" required />
-      </div>
-      <div class="form-actions">
-        <button type="submit">Log In</button>
-        <p style="margin-top: 1rem;">New here? <a href="#" style="color: #00eaff; text-decoration: underline;">Sign up</a></p>
-      </div>
-    </form>
-  </div>
+  <!-- Hero Section -->
+  <section class="hero">
+    <h2>Transform Your Struggles into Strength</h2>
+    <p>Share your scars, celebrate your stars, and inspire others.</p>
+    <a href="#" class="cta-button">Join the Journey</a>
+  </section>
 
-  <section class="about-section">
-    <h2>About Scars & Stars</h2>
-    <p><strong>Our Vision:</strong> To create a safe, compassionate space where everyone can share their setbacks (“Scars”) and triumphs (“Stars”) to inspire healing and growth.</p>
-    <p><strong>What We Offer:</strong></p>
-    <ul>
-      <li>Login and identity setup — anonymous or personalized</li>
-      <li>Submit your story in two parts: what went wrong, and what you learned</li>
-      <li>Explore stories from others with filters and reactions</li>
-      <li>Private journals for registered users to track emotional growth</li>
-      <li>Healing Hub with mindfulness guides, art corner, and supportive resources</li>
-      <li>Star Archive — a collection of positive moments to inspire you</li>
-      <li>Live Fail Forward Wall showing recent impactful stories</li>
-      <li>Community challenges and anonymous confession rooms</li>
-    </ul>
+  <!-- Features Section -->
+  <section class="features">
+    <div class="feature-card">
+      <h3>Share Your Story</h3>
+      <p>Submit your personal experiences and reflections.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Explore Others</h3>
+      <p>Read and connect with the stories of others.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Healing Hub</h3>
+      <p>Access resources to support your healing journey.</p>
+    </div>
   </section>
 
   <footer>
-    &copy; 2025 Scars & Stars | Built with healing in mind
+    <p>&copy; 2025 Scars & Stars | Built with healing in mind</p>
   </footer>
-
-  <script>
-    function loginUser(event) {
-      event.preventDefault();
-      const username = document.getElementById("username").value;
-      const password = document.getElementById("password").value;
-
-      alert("Logged in as " + username + " (Password is securely processed in final version)");
-      // TODO: Add real auth system later using localStorage or Firebase
-    }
-  </script>
 </body>
 </html>
