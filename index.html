@@ -157,7 +157,6 @@
     </nav>
   </header>
 
-  <!-- HOME SECTION -->
   <div id="home-section">
     <section class="hero">
       <h2>Transform Your Struggles into Strength</h2>
@@ -181,7 +180,6 @@
     </section>
   </div>
 
-  <!-- EXPLORE SECTION -->
   <div id="explore-section" style="display: none;">
     <section class="hero">
       <h2>Explore Others’ Stories</h2>
@@ -208,11 +206,11 @@
     <section class="info-section explore-tab" id="explore-scars" style="display: none;">
       <div class="card">
         <h3>Story: Silent Struggles</h3>
-        <p>Living with depression in a world that says 'smile more'. 🫂</p>
+        <p>Living with depression in a world that says 'smile more'. �</p>
       </div>
       <div class="card">
         <h3>Story: Lost and Learning</h3>
-        <p>Facing academic failure and finding identity beyond grades. 🫂</p>
+        <p>Facing academic failure and finding identity beyond grades. �</p>
       </div>
     </section>
 
@@ -228,7 +226,6 @@
     </section>
   </div>
 
-  <!-- MODAL -->
   <div id="authModal" class="modal">
     <div class="modal-content">
       <span class="close-btn" onclick="closeModal()">&times;</span>
@@ -238,13 +235,13 @@
       </div>
       <div id="signupTab">
         <h3>Create Account</h3>
-        <input type="text" placeholder="Username" id="signupUser" />
+        <input type="text" placeholder="Email" id="signupUser" />
         <input type="password" placeholder="Password" id="signupPass" />
         <button onclick="signup()">Sign Up</button>
       </div>
       <div id="loginTab" style="display:none">
         <h3>Welcome Back</h3>
-        <input type="text" placeholder="Username" id="loginUser" />
+        <input type="text" placeholder="Email" id="loginUser" />
         <input type="password" placeholder="Password" id="loginPass" />
         <button onclick="login()">Log In</button>
       </div>
@@ -265,34 +262,8 @@
       document.getElementById('loginTab').style.display = tab === 'login' ? 'block' : 'none';
     }
 
-    function signup() {
-      const user = document.getElementById('signupUser').value;
-      const pass = document.getElementById('signupPass').value;
-      if (user && pass) {
-        localStorage.setItem(user, pass);
-        alert("Account created!");
-        closeModal();
-      } else {
-        alert("Please fill all fields.");
-      }
-    }
-
-    function login() {
-      const user = document.getElementById('loginUser').value;
-      const pass = document.getElementById('loginPass').value;
-      const stored = localStorage.getItem(user);
-      if (stored && stored === pass) {
-        alert("Welcome back!");
-        closeModal();
-      } else {
-        alert("Invalid username or password.");
-      }
-    }
-
     window.onclick = function(e) {
-      if (e.target === modal) {
-        closeModal();
-      }
+      if (e.target === modal) closeModal();
     };
 
     function showSection(section) {
@@ -301,10 +272,56 @@
     }
 
     function switchExploreTab(tab) {
-      const allTabs = document.querySelectorAll('.explore-tab');
-      allTabs.forEach(t => t.style.display = 'none');
+      document.querySelectorAll('.explore-tab').forEach(t => t.style.display = 'none');
       document.getElementById(`explore-${tab}`).style.display = 'flex';
     }
+  </script>
+
+  <!-- Firebase Configuration -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.9.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyA9GpmEkq_dxidH9f8ahg0JKcN8qsJ57Ac",
+      authDomain: "scarsandstars-23ceb.firebaseapp.com",
+      projectId: "scarsandstars-23ceb",
+      storageBucket: "scarsandstars-23ceb.appspot.com",
+      messagingSenderId: "783678863965",
+      appId: "1:783678863965:web:63f26c337044b319b0ebb4",
+      measurementId: "G-HGE24VFQEQ"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth();
+
+    window.signup = function () {
+      const email = document.getElementById("signupUser").value;
+      const password = document.getElementById("signupPass").value;
+
+      createUserWithEmailAndPassword(auth, email, password)
+        .then(() => {
+          alert("Account created!");
+          closeModal();
+        })
+        .catch(error => {
+          alert("Signup Error: " + error.message);
+        });
+    };
+
+    window.login = function () {
+      const email = document.getElementById("loginUser").value;
+      const password = document.getElementById("loginPass").value;
+
+      signInWithEmailAndPassword(auth, email, password)
+        .then(() => {
+          alert("Welcome back!");
+          closeModal();
+        })
+        .catch(error => {
+          alert("Login Error: " + error.message);
+        });
+    };
   </script>
 </body>
 </html>
