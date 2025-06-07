@@ -6,7 +6,7 @@
   <title>Scars & Stars</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Pacifico&display=swap" rel="stylesheet" />
   <style>
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; scroll-behavior: smooth; }
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
@@ -36,6 +36,7 @@
       color: #00bfff;
       text-decoration: none;
       font-weight: 600;
+      cursor: pointer;
     }
 
     .hero {
@@ -140,6 +141,10 @@
       color: #888;
     }
 
+    section[id] {
+      scroll-margin-top: 80px;
+    }
+
     footer {
       text-align: center;
       background: rgba(255, 255, 255, 0.9);
@@ -148,38 +153,126 @@
       font-size: 0.9rem;
       color: #444;
     }
+
+    /* Journal Section */
+    #journal {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 2rem;
+      border-radius: 10px;
+      margin: 2rem auto;
+      max-width: 800px;
+      text-align: center;
+    }
+    #journal h2 {
+      color: #0078d7;
+    }
+    #journal ul {
+      text-align: left;
+      max-width: 600px;
+      margin: 1rem auto;
+    }
+    #journal li {
+      margin: 0.5rem 0;
+    }
+
+    /* Explore Section */
+    #explore {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 2rem;
+      border-radius: 10px;
+      margin: 2rem auto;
+      max-width: 800px;
+      text-align: center;
+    }
+    #explore h2 {
+      color: #0078d7;
+    }
+    #explore ul {
+      text-align: left;
+      max-width: 600px;
+      margin: 1rem auto;
+    }
+    #explore li {
+      margin: 0.5rem 0;
+    }
+
+    /* Healing Hub */
+    #healing {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 2rem;
+      border-radius: 10px;
+      margin: 2rem auto;
+      max-width: 800px;
+      text-align: center;
+    }
+    #healing h2 {
+      color: #0078d7;
+    }
   </style>
 </head>
 <body>
   <header>
     <h1>Scars & Stars</h1>
     <nav>
-      <a href="#">Home</a>
-      <a href="explore.html" target="_blank">Explore</a>
-      <a href="#">Journal</a>
-      <a href="#">Healing Hub</a>
+      <a href="#home">Home</a>
+      <a href="#explore">Explore</a>
+      <a href="#journal">Journal</a>
+      <a href="#healing">Healing Hub</a>
     </nav>
   </header>
 
-  <section class="hero">
-    <h2>Transform Your Struggles into Strength</h2>
-    <p>Share your scars, celebrate your stars, and inspire others.</p>
-    <button class="cta-button" onclick="openModal()">Join the Journey</button>
+  <main id="home">
+    <section class="hero">
+      <h2>Transform Your Struggles into Strength</h2>
+      <p>Share your scars, celebrate your stars, and inspire others.</p>
+      <button class="cta-button" onclick="openModal()">Join the Journey</button>
+    </section>
+
+    <section class="info-section">
+      <div class="card">
+        <h3>My Journal</h3>
+        <p>Write, reflect, and grow by keeping track of your thoughts, emotions, and healing milestones.</p>
+      </div>
+      <div class="card">
+        <h3>Healing Hub</h3>
+        <p>Find mindfulness tools, creative prompts, and expert-curated wellness resources.</p>
+      </div>
+      <div class="card">
+        <h3>Explore Stories</h3>
+        <p>Read real stories of resilience and healing from others in our supportive community.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Journal Section -->
+  <section id="journal">
+    <h2>My Journal (for registered users)</h2>
+    <ul>
+      <li>See all scars & stars you’ve submitted</li>
+      <li>Save random stars from others</li>
+      <li>Write journal entries (freeform)</li>
+      <li>Track emotional growth</li>
+      <li>Optional: daily/weekly reminder to reflect</li>
+    </ul>
   </section>
 
-  <section class="info-section">
-    <div class="card">
-      <h3>My Journal</h3>
-      <p>Write, reflect, and grow by keeping track of your thoughts, emotions, and healing milestones.</p>
-    </div>
-    <div class="card">
-      <h3>Healing Hub</h3>
-      <p>Find mindfulness tools, creative prompts, and expert-curated wellness resources.</p>
-    </div>
-    <div class="card">
-      <h3>Explore Stories</h3>
-      <p>Read real stories of resilience and healing from others in our supportive community.</p>
-    </div>
+  <!-- Explore Section -->
+  <section id="explore">
+    <h2>Explore Others’ Stories</h2>
+    <p>The Explore section is where healing begins with connection. Here, you’ll find stories from people just like you—those who turned their pain into power.</p>
+    <ul>
+      <li>Mini-scar and mini-star preview cards</li>
+      <li>Click to read full stories</li>
+      <li>Filters: by tag, age, emotion</li>
+      <li>Reactions: ❤️ “Relate”, 🌱 “Inspired”, 🫂 “You’re not alone”</li>
+      <li>Randomizer: Show a random star for inspiration</li>
+    </ul>
+  </section>
+
+  <!-- Healing Hub -->
+  <section id="healing">
+    <h2>Healing Hub</h2>
+    <p>Mindfulness tools, creative prompts, emotional first-aid kits, and curated resources to help you heal with intention.</p>
   </section>
 
   <!-- Modal -->
@@ -206,7 +299,7 @@
   </div>
 
   <footer>
-    &copy; 2025 Scars & Stars | Built with healing in mind
+    &copy; 2025 Scars & Stars | Every story matters
   </footer>
 
   <script>
