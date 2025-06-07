@@ -17,7 +17,6 @@
       flex-direction: column;
       min-height: 100vh;
     }
-
     header {
       background: rgba(255, 255, 255, 0.9);
       padding: 1rem;
@@ -38,7 +37,6 @@
       font-weight: 600;
       cursor: pointer;
     }
-
     .hero {
       text-align: center;
       background: rgba(255, 255, 255, 0.9);
@@ -64,7 +62,6 @@
       font-size: 1rem;
       cursor: pointer;
     }
-
     .info-section {
       display: flex;
       justify-content: center;
@@ -81,7 +78,6 @@
       width: 300px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
-
     .modal {
       display: none;
       position: fixed;
@@ -140,7 +136,6 @@
       cursor: pointer;
       color: #888;
     }
-
     footer {
       text-align: center;
       background: rgba(255, 255, 255, 0.9);
@@ -157,12 +152,12 @@
     <nav>
       <a onclick="showSection('home')">Home</a>
       <a onclick="showSection('explore')">Explore</a>
-      <a onclick="showSection('journal')">Journal</a>
-      <a onclick="showSection('healing')">Healing Hub</a>
+      <a href="#">Journal</a>
+      <a href="#">Healing Hub</a>
     </nav>
   </header>
 
-  <!-- Home Section -->
+  <!-- HOME SECTION -->
   <div id="home-section">
     <section class="hero">
       <h2>Transform Your Struggles into Strength</h2>
@@ -171,11 +166,11 @@
     </section>
 
     <section class="info-section">
-      <div class="card" id="journal">
+      <div class="card">
         <h3>My Journal</h3>
         <p>Write, reflect, and grow by keeping track of your thoughts, emotions, and healing milestones.</p>
       </div>
-      <div class="card" id="healing">
+      <div class="card">
         <h3>Healing Hub</h3>
         <p>Find mindfulness tools, creative prompts, and expert-curated wellness resources.</p>
       </div>
@@ -186,28 +181,54 @@
     </section>
   </div>
 
-  <!-- Explore Section -->
+  <!-- EXPLORE SECTION -->
   <div id="explore-section" style="display: none;">
     <section class="hero">
       <h2>Explore Others’ Stories</h2>
       <p>Discover powerful stories shared by our community. Read, react, and find hope.</p>
     </section>
 
-    <section class="info-section">
+    <div class="tab-switch" style="justify-content: center; margin-bottom: 1rem;">
+      <button onclick="switchExploreTab('all')">All Stories</button>
+      <button onclick="switchExploreTab('scars')">Scars</button>
+      <button onclick="switchExploreTab('stars')">Stars</button>
+    </div>
+
+    <section class="info-section explore-tab" id="explore-all">
       <div class="card">
-        <h3>Features</h3>
-        <ul style="text-align: left;">
-          <li>Preview mini-scar and mini-star cards</li>
-          <li>Click to read full stories</li>
-          <li>Filters: tag, age, emotion</li>
-          <li>Reactions: ❤️ “Relate”, 🌱 “Inspired”, 🫂 “You’re not alone”</li>
-          <li>Randomizer: View a surprise story</li>
-        </ul>
+        <h3>Story: Rising from the Ashes</h3>
+        <p>A journey through grief and healing after losing a loved one. 🌱</p>
+      </div>
+      <div class="card">
+        <h3>Story: Small Wins</h3>
+        <p>Overcoming anxiety one deep breath at a time. ❤️</p>
+      </div>
+    </section>
+
+    <section class="info-section explore-tab" id="explore-scars" style="display: none;">
+      <div class="card">
+        <h3>Story: Silent Struggles</h3>
+        <p>Living with depression in a world that says 'smile more'. 🫂</p>
+      </div>
+      <div class="card">
+        <h3>Story: Lost and Learning</h3>
+        <p>Facing academic failure and finding identity beyond grades. 🫂</p>
+      </div>
+    </section>
+
+    <section class="info-section explore-tab" id="explore-stars" style="display: none;">
+      <div class="card">
+        <h3>Story: Breakthrough</h3>
+        <p>From rock bottom to starting a mental wellness podcast. 🌟</p>
+      </div>
+      <div class="card">
+        <h3>Story: First Smile in Months</h3>
+        <p>How journaling helped me find hope again. 🌟</p>
       </div>
     </section>
   </div>
 
-  <!-- Modal -->
+  <!-- MODAL -->
   <div id="authModal" class="modal">
     <div class="modal-content">
       <span class="close-btn" onclick="closeModal()">&times;</span>
@@ -277,6 +298,12 @@
     function showSection(section) {
       document.getElementById('home-section').style.display = section === 'home' ? 'block' : 'none';
       document.getElementById('explore-section').style.display = section === 'explore' ? 'block' : 'none';
+    }
+
+    function switchExploreTab(tab) {
+      const allTabs = document.querySelectorAll('.explore-tab');
+      allTabs.forEach(t => t.style.display = 'none');
+      document.getElementById(`explore-${tab}`).style.display = 'flex';
     }
   </script>
 </body>
