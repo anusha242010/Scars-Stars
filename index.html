@@ -140,53 +140,6 @@
       color: #888;
     }
 
-    /* Explore Section */
-    #explore {
-      padding: 3rem 1rem;
-      background-color: rgba(255,255,255,0.95);
-    }
-    #explore h2 {
-      text-align: center;
-      color: #0078d7;
-      margin-bottom: 1.5rem;
-    }
-    #explore-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1.5rem;
-    }
-    .explore-card {
-      background: white;
-      padding: 1rem;
-      border-radius: 10px;
-      width: 250px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      text-align: center;
-    }
-    .explore-card h4 {
-      margin-top: 0;
-      color: #3a86ff;
-    }
-    .explore-card p {
-      color: #444;
-      font-size: 0.95rem;
-    }
-    .explore-card button {
-      background: #00bfff;
-      color: white;
-      padding: 0.4rem 1rem;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-top: 0.5rem;
-    }
-    .reactions {
-      margin-top: 0.8rem;
-      font-size: 0.9rem;
-      color: #333;
-    }
-
     footer {
       text-align: center;
       background: rgba(255, 255, 255, 0.9);
@@ -201,14 +154,14 @@
   <header>
     <h1>Scars & Stars</h1>
     <nav>
-      <a href="#home">Home</a>
-      <a href="#explore">Explore</a>
+      <a href="#">Home</a>
+      <a href="explore.html" target="_blank">Explore</a>
       <a href="#">Journal</a>
       <a href="#">Healing Hub</a>
     </nav>
   </header>
 
-  <section class="hero" id="home">
+  <section class="hero">
     <h2>Transform Your Struggles into Strength</h2>
     <p>Share your scars, celebrate your stars, and inspire others.</p>
     <button class="cta-button" onclick="openModal()">Join the Journey</button>
@@ -226,35 +179,6 @@
     <div class="card">
       <h3>Explore Stories</h3>
       <p>Read real stories of resilience and healing from others in our supportive community.</p>
-    </div>
-  </section>
-
-  <!-- Explore Section -->
-  <section id="explore">
-    <h2>Explore Others’ Stories</h2>
-
-    <div style="text-align:center; margin-bottom: 1.5rem;">
-      <button onclick="showRandomStar()" style="background:#3a86ff; color:#fff; padding:0.6rem 1rem; border:none; border-radius:5px;">🌟 Show Random Star</button>
-    </div>
-
-    <div id="explore-grid">
-      <div class="explore-card">
-        <h4>Scar: Lost a friend</h4>
-        <p>Star: Learned to trust again...</p>
-        <button onclick="alert('Full story coming soon')">Read More</button>
-        <div class="reactions">
-          ❤️ <span>Relate</span> &nbsp;&nbsp; 🌱 <span>Inspired</span> &nbsp;&nbsp; 🫂 <span>Not Alone</span>
-        </div>
-      </div>
-
-      <div class="explore-card">
-        <h4>Scar: Anxiety struggles</h4>
-        <p>Star: Found peace through journaling...</p>
-        <button onclick="alert('Full story coming soon')">Read More</button>
-        <div class="reactions">
-          ❤️ <span>Relate</span> &nbsp;&nbsp; 🌱 <span>Inspired</span> &nbsp;&nbsp; 🫂 <span>Not Alone</span>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -324,16 +248,6 @@
         closeModal();
       }
     };
-
-    function showRandomStar() {
-      const examples = [
-        "You are not what happened to you, you are what you choose to become 🌟",
-        "Every scar has a story; every story has a star ✨",
-        "You got through 100% of your worst days. Remember that. 🌱",
-        "Darkness reveals the brightest stars 💫"
-      ];
-      alert(examples[Math.floor(Math.random() * examples.length)]);
-    }
   </script>
 </body>
 </html>
